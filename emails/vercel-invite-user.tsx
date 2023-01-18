@@ -9,12 +9,13 @@ import { Preview } from '@react-email/preview';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 import * as React from 'react';
+import { render } from '@react-email/render';
 
-export default function Email() {
+export default function Email({ firstName }) {
   return (
     <Html>
       <Head />
-      <Preview>Join bukinoshita on Vercel</Preview>
+      <Preview>Join kharioki on Vercel</Preview>
       <Section style={main}>
         <Container style={container}>
           <Section style={{ marginTop: '32px' }}>
@@ -29,49 +30,27 @@ export default function Email() {
           <Text style={h1}>
             Join <strong>My Project</strong> on <strong>Vercel</strong>
           </Text>
-          <Text style={text}>Hello zenorocha,</Text>
+          <Text style={text}>Hello {firstName},</Text>
           <Text style={text}>
-            <strong>bukinoshita</strong> (
-            <Link href="mailto:bukinoshita@example.com" style={link}>
-              bukinoshita@example.com
+            <strong>kharioki</strong> (
+            <Link href="mailto:kharioki@example.com" style={link}>
+              kharioki@example.com
             </Link>
             ) has invited you to the <strong>My Project</strong> team on{' '}
             <strong>Vercel</strong>.
           </Text>
-          <table
-            style={spacing}
-            border={0}
-            cellPadding="0"
-            cellSpacing="10"
-            align="center"
-          >
-            <tr>
-              <td style={center} align="left" valign="middle">
-                <Img
-                  style={avatar}
-                  src="https://vercel.com/api/www/avatar/?u=zenorocha&amp;s=240&amp;format=png"
-                  width="64"
-                  height="64"
-                />
-              </td>
-              <td style={center} align="left" valign="middle">
-                <Img
-                  src="/static/vercel-arrow.png"
-                  width="12"
-                  height="9"
-                  alt="invited you to"
-                />
-              </td>
-              <td style={center} align="left" valign="middle">
-                <Img
-                  style={avatar}
-                  src="https://vercel.com/api/www/avatar/?teamId=team_3e17ZatpKJ1imLQdTyrLeBoX&amp;s=240&amp;format=png"
-                  width="64"
-                  height="64"
-                />
-              </td>
-            </tr>
-          </table>
+          <Section style={{
+            display: 'grid',
+            placeItems: 'center',
+            ...container,
+          }}>
+            <Img
+              src="https://res.cloudinary.com/khariokitony/image/upload/c_scale/r_6/f_jpg/c_scale,w_1278/kiki?_a=ATABlAA0"
+              width={80}
+              alt="kharioki"
+            />
+
+          </Section>
           <Section style={{ textAlign: 'center' }}>
             <Button
               pX={20}
@@ -194,3 +173,8 @@ const footer = {
   fontSize: '12px',
   lineHeight: '24px',
 };
+
+const html = render(<Email firstName="Jim" />, {
+  pretty: true,
+});
+console.log(html);
